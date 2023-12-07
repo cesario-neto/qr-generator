@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de qrcode</title>
+    <title>Gerador de código qr</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
 </head>
+
 <body>
-    <form action="/qr-generator" method="post">
-        <input type="text" name="qr_name" placeholder="Texto do qr code">
-        <button type="submit">Gerar</button>
-    </form>
-    
-    {% if context.have_qr %}
-        <img src="{{ url_for('static', filename=context.qr_code) }}" alt="">
-    {% endif %}
+    <div class="container">
+        <div class="main-content">
+            <div class="qr-form">
+                <form action="/qr-generator" method="post" class="form-group">
+                    <input type="text" name="qr_name" placeholder="Digite seu texto qr aqui" class="form-group__input">
+                    <button type="submit" class="form-group__btn">Gerar</button>
+                </form>
+            </div>
+            {% if context.have_qr %}
+                <div class="qr-img">
+                    <img src="{{ url_for('static', filename=context.qr_code) }}" alt="">
+                </div>
+            {% endif %}
+        </div>
+    </div>
 
 </body>
+
 </html>
